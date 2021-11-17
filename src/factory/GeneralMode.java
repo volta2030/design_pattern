@@ -5,21 +5,35 @@ import javax.swing.JButton;
 public class GeneralMode extends Mode{
 	
 	@Override
-	public JButton[] createInputBtn() {
-		btns = new JButton[4];
-		btns[0] = new JButton();
-		btns[0].setText("+");
+	public JButton[] createInputOpBtn() {
+		opBtns = new JButton[5];
+		opBtns[0] = new JButton();
+		opBtns[0].setText("+");
 		
-		btns[1] = new JButton();
-		btns[1].setText("-");
+		opBtns[1] = new JButton();
+		opBtns[1].setText("-");
 		
-		btns[2] = new JButton();
-		btns[2].setText("*");
+		opBtns[2] = new JButton();
+		opBtns[2].setText("*");
 		
-		btns[3] = new JButton();
-		btns[3].setText("/");
+		opBtns[3] = new JButton();
+		opBtns[3].setText("/");
 		
-		return btns;
+		opBtns[4] = new JButton();
+		opBtns[4].setText("=");
+		
+		return opBtns;
+	}
+	
+	@Override
+	public JButton[] createInputNumberBtn() {
+		numberBtns = new JButton[10];
+		for(int i = 0; i < 10; i++) {
+			numberBtns[i] = new JButton();
+			numberBtns[i].setText(Integer.toString(i));						
+		}
+
+		return numberBtns;
 	}
 	
 }

@@ -5,14 +5,27 @@ import javax.swing.JButton;
 public class ProgrammingMode extends Mode {
 
 	@Override
-	public JButton[] createInputBtn() {
-		btns = new JButton[2];
-		btns[0] = new JButton();
-		btns[0].setText("OR");
+	public JButton[] createInputOpBtn() {
+		opBtns = new JButton[3];
+		opBtns[0] = new JButton();
+		opBtns[0].setText("OR");
 		
-		btns[1] = new JButton();
-		btns[1].setText("AND");
-		return btns;
+		opBtns[1] = new JButton();
+		opBtns[1].setText("AND");
+		
+		opBtns[2] = new JButton();
+		opBtns[2].setText("=");
+		return opBtns;
 	}
 	
+	@Override
+	public JButton[] createInputNumberBtn() {
+		numberBtns = new JButton[2];
+		numberBtns[0] = new JButton();
+		numberBtns[0].setText("0");
+		
+		numberBtns[1] = new JButton();
+		numberBtns[1].setText("1");
+		return numberBtns;
+	}
 }

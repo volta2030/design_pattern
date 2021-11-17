@@ -4,8 +4,11 @@ import javax.swing.JButton;
 
 public abstract class Mode {
 	
-	protected JButton[] btns;
+	protected JButton[] opBtns;
+	protected JButton[] numberBtns;
 	
-	public abstract JButton[] createInputBtn();
+	public abstract JButton[] createInputOpBtn();
+	
+	public abstract JButton[] createInputNumberBtn();
 
 }
