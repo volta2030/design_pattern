@@ -19,8 +19,9 @@ public class ResultView extends JTextArea {
 			resultView = new ResultView();
 			resultView.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			resultView.setFont(resultView.getFont().deriveFont(30f));
-			resultView.setSize(new Dimension(100,100));
-			resultView.setBorder(BorderFactory.createLineBorder(Color.RED));
+			resultView.setPreferredSize(new Dimension(100,50));
+			resultView.setEditable(false);
+			resultView.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 		}
 		return resultView; 
 	}

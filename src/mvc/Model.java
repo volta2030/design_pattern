@@ -22,11 +22,9 @@ public class Model {
 	}
 	
 	public void resetValue() {
-		
 		this.input1 = "";
 		this.input2 = "";
 		this.operator = "";
-		
 	}
 	
 }
