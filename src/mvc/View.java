@@ -10,36 +10,42 @@ import javax.swing.JPanel;
 import factory.Mode;
 import factory.ModeFactory;
 import factory.ModeType;
-import singleton.DisplayView;
+import singleton.InputView;
+import singleton.ResultView;
 
 public class View extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private Mode md;
-	private DisplayView displayView;
+	private InputView inputView;
+	private ResultView resultView;
 	public JButton[] opBtns;
 	public JButton[] numberBtns;	
 	
 	public View(ModeType modeType) {
 		
-		displayView = DisplayView.getInstance();
+		inputView = InputView.getInstance();
+		resultView = ResultView.getInstance();
+		
 		md = ModeFactory.createInstance(modeType);
 		opBtns = md.createInputOpBtn();
 		numberBtns = md.createInputNumberBtn();
 
 		setTitle("Calculator using Design Pattern");
-		setLayout(new GridLayout(2,1));
-		setSize(new Dimension(300,350));
+		setLayout(new GridLayout(3,1));
+		setSize(new Dimension(400,500));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		build();
 	}
 	
 	private void build() {
 		
-		View.this.add(displayView);	
+		View.this.add(inputView);
+		View.this.add(resultView);
 		View.this.add(buildInputPanel());
 
 	}
@@ -73,20 +79,18 @@ public class View extends JFrame{
 	}
 	
 	public void updateResult(String result) {
-		String origin = displayView.getText();
-		String update = origin + "\n" +"=\n"+result;
-		displayView.setText(update);
+		resultView.setText(result);
 	}
 	
 	public void updateNumber(String str) {
-		String origin = displayView.getText();
+		String origin = inputView.getText();
 		String update = origin + str;
-		displayView.setText(update);
+		inputView.setText(update);
 	}
 	
 	public void updateOperator(String str) {
-		String origin = displayView.getText();
+		String origin = inputView.getText();
 		String update = origin + "\n" + str + "\n";
-		displayView.setText(update);
+		inputView.setText(update);
 	}
 }

@@ -27,6 +27,11 @@ public class Controller {
 				if(model.operator.equals("")) {
 					model.operator = e.getActionCommand();
 					view.updateOperator(e.getActionCommand());
+					if(model.operator.equals("NOT")) {
+						String result = model.getValue();
+						view.updateResult(result);
+						model.resetValue();
+					}
 				}
 				if(e.getActionCommand().equals("=")) {
 					String result = model.getValue();

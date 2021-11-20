@@ -1,5 +1,7 @@
 package mvc;
 
+import core.JBin;
+
 public class Model {
 
 	public String input1 = "";
@@ -11,9 +13,9 @@ public class Model {
 		String result = null;
 		
 		switch(operator) {
-			case "OR":
-				result = this.input1 + this.input2;
-			break;
+			case "OR": result = JBin.or(this.input1, this.input2); break;
+			case "AND": result = JBin.and(this.input1, this.input2); break;
+			case "NOT" : result = JBin.not(this.input1); break;
 		}
 		
 		return result;

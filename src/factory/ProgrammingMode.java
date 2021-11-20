@@ -6,7 +6,7 @@ public class ProgrammingMode extends Mode {
 
 	@Override
 	public JButton[] createInputOpBtn() {
-		opBtns = new JButton[3];
+		opBtns = new JButton[4];
 		opBtns[0] = new JButton();
 		opBtns[0].setText("OR");
 		
@@ -14,7 +14,10 @@ public class ProgrammingMode extends Mode {
 		opBtns[1].setText("AND");
 		
 		opBtns[2] = new JButton();
-		opBtns[2].setText("=");
+		opBtns[2].setText("NOT");
+		
+		opBtns[3] = new JButton();
+		opBtns[3].setText("=");
 		return opBtns;
 	}
 	
