@@ -20,7 +20,7 @@ public class InputView extends JTextArea{
 			inputView = new InputView();
 			inputView.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			inputView.setFont(inputView.getFont().deriveFont(30f));
-			inputView.setPreferredSize(new Dimension(100,200));
+			inputView.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 			inputView.setEditable(false);
 		}
 		return inputView; 

@@ -30,6 +30,9 @@ public class View extends JFrame{
 	private JTextField modeTF;
 	private InputView inputView;
 	private ResultView resultView;
+	public JButton clearBtn;
+	public JButton deleteBtn;
+	public JButton equalBtn;
 	public JButton[] opBtns;
 	public JButton[] numberBtns;	
 	
@@ -39,12 +42,18 @@ public class View extends JFrame{
 		inputView = InputView.getInstance();
 		resultView = ResultView.getInstance();
 		md = ModeFactory.createInstance(modeType);
+		
+		clearBtn = md.createClearBtn();
+		deleteBtn = md.createDeleteBtn();
+		equalBtn = md.createEqualBtn();
 		opBtns = md.createInputOpBtn();
 		numberBtns = md.createInputNumberBtn();
-
-		setTitle("Calculator");
+		
+		
+		
+		setTitle("Jalculator");
 		setLayout(new BorderLayout());
-		setSize(new Dimension(400,450));
+		setSize(new Dimension(400,495));
 //		getRootPane().setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY, Color.LIGHT_GRAY));
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -56,7 +65,7 @@ public class View extends JFrame{
 	private void build() {
 		View.this.add(buildConfigurePanel(), BorderLayout.PAGE_START);
 		View.this.add(buildView(), BorderLayout.CENTER);
-		View.this.add(buildInputPanel(), BorderLayout.PAGE_END);
+//		View.this.add(buildInputPanel(), BorderLayout.PAGE_END);
 
 	}
 	
@@ -77,8 +86,11 @@ public class View extends JFrame{
 		JPanel view  = new JPanel();
 		view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
 		view.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		inputView.setPreferredSize(new Dimension(400,150));
+		inputView.setSize(new Dimension(400,80));
 		view.add(inputView);
 		view.add(resultView);
+		view.add(buildInputPanel());
 		
 		return view;
 	}
@@ -86,8 +98,9 @@ public class View extends JFrame{
 	private JPanel buildInputPanel() {
 		
 		JPanel inputPanel  = new JPanel();
+		inputPanel.setPreferredSize(new Dimension(400,200));
 		inputPanel.setLayout(new GridLayout(1,2));
-		inputPanel.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
+		inputPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
 		inputPanel.add(buildNumberPanel());
 		inputPanel.add(buildOperationPanel());
 		
@@ -105,10 +118,13 @@ public class View extends JFrame{
 	
 	private JPanel buildOperationPanel() {
 		JPanel inputOpPanel  = new JPanel();
-		inputOpPanel.setLayout(new GridLayout(opBtns.length,1));
+		inputOpPanel.setLayout(new GridLayout(5,2));
+		inputOpPanel.add(clearBtn);
+		inputOpPanel.add(deleteBtn);
 		for(int i = 0; i < opBtns.length; i ++) {
 			inputOpPanel.add(opBtns[i]);
 		}
+		inputOpPanel.add(equalBtn);
 		return inputOpPanel;
 	}
 	

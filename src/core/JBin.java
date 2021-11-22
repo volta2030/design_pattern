@@ -73,4 +73,20 @@ public class JBin {
 		return String.valueOf(c);
 	}
 	
+	public static String nand(String a, String b) {
+		return not(and(a,b));
+	}
+	
+	public static String nor(String a, String b) {
+		return not(or(a,b));
+	}
+	
+	public static String xor(String a, String b) {
+		return and(nand(a, b), or(a, b));
+	}
+	
+	public static String xnor(String a, String b) {
+		return not(xor(a, b));
+	}
+	
 }

@@ -14,9 +14,28 @@ public class Controller {
 	}
 	
 	private void listener() {
+		
+		view.clearBtn.addActionListener(e->{
+				model.resetValue();
+				view.clear();
+		});
+		
+		view.deleteBtn.addActionListener(e->{
+			if(model.operator.equals("")) model.undoInput1(); 
+			else { model.undoInput2(); }
+		});
+		
+		view.equalBtn.addActionListener(e->{
+			String result = model.getValue();
+			view.updateResult(result);
+			model.resetValue();
+		});
+		
 		for(int i = 0; i < view.numberBtns.length; i++) {
 			view.numberBtns[i].addActionListener(e->{
-				if(model.operator.equals("")) model.input1 += e.getActionCommand();
+				if(model.operator.equals("")) {
+					model.input1 += e.getActionCommand();
+				} 
 				else{model.input2 += e.getActionCommand();}
 				view.updateNumber(e.getActionCommand());
 			});
@@ -25,7 +44,7 @@ public class Controller {
 		for(int i = 0; i < view.opBtns.length; i++) {
 			view.opBtns[i].addActionListener(e->{
 				if(model.operator.equals("")) {
-					model.operator = e.getActionCommand();
+					model.setOperator(e.getActionCommand());
 					view.updateOperator(e.getActionCommand());
 		
 					if(model.operator.equals("NOT")) {
@@ -34,17 +53,7 @@ public class Controller {
 						model.resetValue();
 					}
 				}
-				
-				if(e.getActionCommand().equals("=")) {
-					String result = model.getValue();
-					view.updateResult(result);
-					model.resetValue();
-				}else if(e.getActionCommand().equals("C")) {
-					model.resetValue();
-					view.clear();
-				}
-				
-				
+								
 			});
 		}
 	}

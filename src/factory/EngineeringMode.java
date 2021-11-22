@@ -6,29 +6,25 @@ public class EngineeringMode extends Mode {
 	
 	@Override
 	public JButton[] createInputOpBtn() {
-		opBtns = new JButton[5];
-		
-		opBtns[0] = new JButton();
-		opBtns[0].setText("C");
-		
-		opBtns[1] = new JButton();
-		opBtns[1].setText("sin");
-		
-		opBtns[2] = new JButton();
-		opBtns[2].setText("cos");
-		
-		opBtns[3] = new JButton();
-		opBtns[3].setText("tan");
-		
-		opBtns[4] = new JButton();
-		opBtns[4].setText("=");
+		String[] buttonLabels = {"C", "sin", "cos", "tan", "="};
+		opBtns = new JButton[buttonLabels.length];
+		for (int i= 0; i < opBtns.length; i++) {
+			opBtns[i] = new JButton();
+			opBtns[i] .setFont(opBtns[i] .getFont().deriveFont(20f));
+			opBtns[i].setText(buttonLabels[i]);
+		}
 		return opBtns;
-		
 	}
 	
 	@Override
 	public JButton[] createInputNumberBtn() {
-
+		String[] buttonLabels = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+		numberBtns = new JButton[buttonLabels.length];
+		for (int i= 0; i < numberBtns.length; i++) {
+			numberBtns[i] = new JButton();
+			numberBtns[i] .setFont(numberBtns[i] .getFont().deriveFont(20f));
+			numberBtns[i].setText(buttonLabels[i]);
+		}
 		return numberBtns;
 	}
 	

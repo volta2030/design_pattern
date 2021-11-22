@@ -1,7 +1,7 @@
 package factory;
 
 public enum ModeType {
-	GENERAL(0, "General"),
+	ACCOUNTING(0, "Accounting"),
 	ENGINEERING(1, "Engineering"),
 	PROGRAMMING(2, "Programming");
 	
