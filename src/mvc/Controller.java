@@ -1,6 +1,8 @@
 package mvc;
 
 import java.awt.event.*;
+import command.*;
+
 public class Controller {
 	
 	private View view;
@@ -15,47 +17,20 @@ public class Controller {
 	
 	private void listener() {
 		
-		view.clearBtn.addActionListener(e->{
-				model.resetValue();
-				view.clear();
-		});
+		Receiver receiver = new Receiver(model, view);
 		
-		view.deleteBtn.addActionListener(e->{
-			if(model.operator.equals("")) model.undoInput1(); 
-			else { model.undoInput2(); }
-		});
+		ClearCommand clearCmd = new ClearCommand(view.clearBtn);
+		DeleteCommand deleteCmd = new DeleteCommand(view.deleteBtn);		
+		ResultCommand resultCmd = new ResultCommand(view.equalBtn);
+		NumberCommand numberCmd = new NumberCommand(view.numberBtns);
+		InputCommand inputCmd = new InputCommand(view.numberBtns);
 		
-		view.equalBtn.addActionListener(e->{
-			String result = model.getValue();
-			view.updateResult(result);
-			model.resetValue();
-		});
-		
-		for(int i = 0; i < view.numberBtns.length; i++) {
-			view.numberBtns[i].addActionListener(e->{
-				if(model.operator.equals("")) {
-					model.input1 += e.getActionCommand();
-				} 
-				else{model.input2 += e.getActionCommand();}
-				view.updateNumber(e.getActionCommand());
-			});
-		}
-		
-		for(int i = 0; i < view.opBtns.length; i++) {
-			view.opBtns[i].addActionListener(e->{
-				if(model.operator.equals("")) {
-					model.setOperator(e.getActionCommand());
-					view.updateOperator(e.getActionCommand());
-		
-					if(model.operator.equals("NOT")) {
-						String result = model.getValue();
-						view.updateResult(result);
-						model.resetValue();
-					}
-				}
-								
-			});
-		}
+		receiver.addQueue(clearCmd, 
+				          deleteCmd, 
+				          resultCmd,
+				          numberCmd,
+				          inputCmd);
+
 	}
 
 }
