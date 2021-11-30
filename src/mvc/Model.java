@@ -20,6 +20,11 @@ public class Model {
 			case "NAND" : result = JBin.nand(this.input1, this.input2); break;
 			case "XOR" : result = JBin.xor(this.input1, this.input2); break;
 			case "XNOR" : result = JBin.xnor(this.input1, this.input2); break;
+			
+			case "+" : result = "1";
+			case "-" : result = "1";
+			case "*" : result = "1";
+			case "/" : result = "1";
 		}
 		
 		return result;

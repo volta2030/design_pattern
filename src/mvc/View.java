@@ -53,12 +53,9 @@ public class View extends JFrame{
 		opBtns = md.createInputOpBtn();
 		numberBtns = md.createInputNumberBtn();
 		
-		
-		
 		setTitle("Jalculator");
 		setLayout(new BorderLayout());
 		setSize(new Dimension(400,495));
-//		getRootPane().setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY, Color.LIGHT_GRAY));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +76,7 @@ public class View extends JFrame{
 		modeTF.setEditable(false);
 		modeTF.setBorder(BorderFactory.createEmptyBorder(5,5,0,0));
 		modeTF.setText(modeType.name());
-		configurePanel.setLayout(new GridLayout(1,2));
+		configurePanel.setLayout(md.createGridLayout());
 		configurePanel.add(modeTF);
 		return configurePanel;
 	
@@ -140,6 +137,8 @@ public class View extends JFrame{
 	
 	private JPanel buildNumberPanel() {
 		JPanel inputNumberPanel  = new JPanel();
+		inputNumberPanel.setLayout(new GridLayout(2,1));
+		inputNumberPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 		for(int i = 0; i < numberBtns.length; i ++) {
 			inputNumberPanel.add(numberBtns[i]);
 		}

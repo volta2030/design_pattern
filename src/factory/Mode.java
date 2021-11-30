@@ -1,5 +1,7 @@
 package factory;
 
+import java.awt.GridLayout;
+
 import javax.swing.JButton;
 
 public abstract class Mode {
@@ -34,6 +36,10 @@ public abstract class Mode {
 		equalBtn .setFont(equalBtn .getFont().deriveFont(20f));
 		equalBtn.setText("=");
 		return equalBtn;
+	}
+	
+	public GridLayout createGridLayout() {
+		return new GridLayout(1,1);
 	}
 
 }

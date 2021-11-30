@@ -1,5 +1,7 @@
 package factory;
 
+import java.awt.GridLayout;
+
 import javax.swing.JButton;
 
 public class EngineeringMode extends Mode {
@@ -28,4 +30,8 @@ public class EngineeringMode extends Mode {
 		return numberBtns;
 	}
 	
+	@Override
+	public GridLayout createGridLayout() {
+		return new GridLayout(3,4);
+	}
 }

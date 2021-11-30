@@ -1,5 +1,7 @@
 package factory;
 
+import java.awt.GridLayout;
+
 import javax.swing.JButton;
 
 public class ProgrammingMode extends Mode {
@@ -27,5 +29,10 @@ public class ProgrammingMode extends Mode {
 			numberBtns[i].setText(buttonLabels[i]);
 		}
 		return numberBtns;
+	}
+	
+	@Override
+	public GridLayout createGridLayout() {
+		return new GridLayout(1,2);
 	}
 }
