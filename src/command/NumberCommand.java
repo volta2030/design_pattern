@@ -11,10 +11,10 @@ public class NumberCommand implements Command {
 	}
 	
 	@Override
-	public void excute(Receiver rev) {
+	public void excute() {
 		// TODO Auto-generated method stub
 		for(JButton btn : buttons) {
-			rev.processNumber(btn);
+			Receiver.processNumber(btn);
 		}
 	}
 }

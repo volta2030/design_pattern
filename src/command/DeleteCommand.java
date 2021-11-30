@@ -13,9 +13,9 @@ public class DeleteCommand implements Command{
 	}
 	
 	@Override
-	public void excute(Receiver rev) {
+	public void excute() {
 		// TODO Auto-generated method stub
-		rev.delete(button);
+		Receiver.delete(button);
 	}
 	
 }

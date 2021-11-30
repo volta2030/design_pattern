@@ -3,6 +3,7 @@ package mvc;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -11,6 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -28,7 +30,9 @@ public class View extends JFrame{
 	private Mode md;
 	private ModeType modeType;
 	private JTextField modeTF;
-	private InputView inputView;
+	public JTextArea inputView1;
+	public JTextArea inputView2;
+	public JTextArea operatorView;
 	private ResultView resultView;
 	public JButton clearBtn;
 	public JButton deleteBtn;
@@ -39,7 +43,7 @@ public class View extends JFrame{
 	public View(ModeType modeType) {
 		
 		this.modeType = modeType;
-		inputView = InputView.getInstance();
+//		inputView = InputView.getInstance();
 		resultView = ResultView.getInstance();
 		md = ModeFactory.createInstance(modeType);
 		
@@ -86,13 +90,39 @@ public class View extends JFrame{
 		JPanel view  = new JPanel();
 		view.setLayout(new BoxLayout(view, BoxLayout.Y_AXIS));
 		view.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		inputView.setPreferredSize(new Dimension(400,150));
-		inputView.setSize(new Dimension(400,80));
-		view.add(inputView);
-		view.add(resultView);
+		view.add(buildDisplayView());
 		view.add(buildInputPanel());
 		
+		
 		return view;
+	}
+	
+	private JPanel buildDisplayView() {
+		JPanel displayView = new JPanel();
+//		displayView.setPreferredSize(new Dimension(400,200));
+		displayView.setLayout(new GridLayout(4,1));
+		
+		inputView1 = new JTextArea();
+		inputView1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		inputView1.setFont(inputView1.getFont().deriveFont(30f));
+		inputView1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		
+		inputView2 = new JTextArea();
+		inputView2.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		inputView2.setFont(inputView1.getFont().deriveFont(30f));
+		inputView2.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		
+		operatorView = new JTextArea();
+		operatorView.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		operatorView.setFont(inputView1.getFont().deriveFont(30f));
+		operatorView.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		
+		displayView.add(inputView1);
+		displayView.add(operatorView);
+		displayView.add(inputView2);
+		displayView.add(resultView);
+		
+		return displayView;
 	}
 	
 	private JPanel buildInputPanel() {
@@ -133,19 +163,38 @@ public class View extends JFrame{
 	}
 	
 	public void clear() {
-		inputView.setText("");
+		inputView1.setText("");
+		inputView2.setText("");
+		operatorView.setText("");
 		resultView.setText("");
 	}
 	
-	public void updateNumber(String str) {
+	public void updateDelete(String str) {
+
+		String update = str;
+		inputView1.setText(update);
+	}
+	
+	public void update(JTextArea inputView, String str) {
 		String origin = inputView.getText();
 		String update = origin + str;
 		inputView.setText(update);
 	}
 	
-	public void updateOperator(String str) {
-		String origin = inputView.getText();
-		String update = origin + "\n" + str + "\n";
+	public void updateDelete(JTextArea inputView, String str) {
+		String update = str;
 		inputView.setText(update);
 	}
+	
+//	public void updateNumber(String str, JTextArea inputView) {
+//		String origin = inputView1.getText();
+//		String update = origin + str;
+//		inputView1.setText(update);
+//	}
+	
+//	public void updateOperator(String str) {
+//		String origin = inputView1.getText();
+//		String update = origin + "\n" + str + "\n";
+//		inputView1.setText(update);
+//	}
 }

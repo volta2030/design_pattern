@@ -43,4 +43,8 @@ public class Model {
 		this.input2 = this.input2.substring(0, this.input2.length()-1);
 	}
 	
+	public void undoOperator() {
+		this.operator = "";
+	}
+	
 }

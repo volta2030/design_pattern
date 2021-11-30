@@ -6,5 +6,5 @@ import mvc.*;
 import mvc.Model;
 
 public interface Command {
-	void excute(Receiver receiver);
+	void excute();
 }

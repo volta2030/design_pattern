@@ -12,25 +12,27 @@ public class Controller {
 		this.view = view;
 		this.model = model;
 		
-		listener();
+		this.addButtonListener();
 	}
 	
-	private void listener() {
+	private void addButtonListener() {
 		
-		Receiver receiver = new Receiver(model, view);
+		Receiver.createInstance(model, view);
 		
 		ClearCommand clearCmd = new ClearCommand(view.clearBtn);
 		DeleteCommand deleteCmd = new DeleteCommand(view.deleteBtn);		
 		ResultCommand resultCmd = new ResultCommand(view.equalBtn);
 		NumberCommand numberCmd = new NumberCommand(view.numberBtns);
-		InputCommand inputCmd = new InputCommand(view.numberBtns);
+		OperatorCommand operationCmd = new OperatorCommand(view.opBtns);
 		
-		receiver.addQueue(clearCmd, 
-				          deleteCmd, 
-				          resultCmd,
-				          numberCmd,
-				          inputCmd);
-
+		addCmdQueue(clearCmd, deleteCmd, resultCmd, numberCmd, operationCmd);
+		
+	}
+	
+	private void addCmdQueue(Command... commands) {
+		for(Command command : commands) {
+			command.excute();
+		}
 	}
 
 }

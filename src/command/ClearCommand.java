@@ -13,9 +13,9 @@ public class ClearCommand implements Command{
 	}
 	
 	@Override
-	public void excute(Receiver rev) {
+	public void excute() {
 		// TODO Auto-generated method stub
-		rev.clear(button);
+		Receiver.clear(button);
 	}
 
 }
