@@ -1,7 +1,9 @@
 package factory;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 public class ProgrammingMode extends Mode {
@@ -14,6 +16,9 @@ public class ProgrammingMode extends Mode {
 			opBtns[i] = new JButton();
 			opBtns[i] .setFont(opBtns[i] .getFont().deriveFont(20f));
 			opBtns[i].setText(buttonLabels[i]);
+			opBtns[i].setBorder(BorderFactory.createEtchedBorder());
+			opBtns[i].setBackground(new Color(47, 102, 169));
+			opBtns[i].setForeground(Color.WHITE);
 		}
 		return opBtns;
 	}
@@ -27,6 +32,7 @@ public class ProgrammingMode extends Mode {
 			numberBtns[i] = new JButton();
 			numberBtns[i] .setFont(numberBtns[i] .getFont().deriveFont(20f));
 			numberBtns[i].setText(buttonLabels[i]);
+			numberBtns[i].setBorder(BorderFactory.createEtchedBorder());
 		}
 		return numberBtns;
 	}

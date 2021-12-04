@@ -1,5 +1,8 @@
 package command;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JButton;
 
 import mvc.*;
@@ -15,7 +18,12 @@ public class DeleteCommand implements Command{
 	@Override
 	public void excute() {
 		// TODO Auto-generated method stub
-		Receiver.delete(button);
+		
+		button.addActionListener(e->{
+		Receiver.delete();
+		 button.setFocusable(false);
+		});
 	}
-	
+
 }
+

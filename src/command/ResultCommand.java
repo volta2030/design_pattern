@@ -15,7 +15,9 @@ public class ResultCommand implements Command{
 	@Override
 	public void excute() {
 		// TODO Auto-generated method stub
-		Receiver.getResult(button);
+		button.addActionListener(e->{
+		Receiver.getResult();
+		});
 	}
 	
 }

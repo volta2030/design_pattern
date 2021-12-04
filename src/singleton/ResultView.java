@@ -20,8 +20,9 @@ public class ResultView extends JTextArea {
 			resultView.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			resultView.setFont(resultView.getFont().deriveFont(30f));
 			resultView.setEditable(false);
+			resultView.setToolTipText("Result Display");
 			resultView.setBorder(BorderFactory.createCompoundBorder(
-					BorderFactory.createLineBorder(Color.BLUE),
+					BorderFactory.createLineBorder(new Color(47, 102, 169)),
 					BorderFactory.createEmptyBorder(5,5,5,5)));
 		}
 		return resultView; 

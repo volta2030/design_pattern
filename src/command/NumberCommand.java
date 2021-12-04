@@ -13,8 +13,11 @@ public class NumberCommand implements Command {
 	@Override
 	public void excute() {
 		// TODO Auto-generated method stub
-		for(JButton btn : buttons) {
-			Receiver.processNumber(btn);
+		for(JButton button : buttons) {
+			button.addActionListener(e->{
+				 Receiver.processNumber(e);
+				 button.setFocusable(false);
+			});
 		}
 	}
 }

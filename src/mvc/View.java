@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -45,6 +47,8 @@ public class View extends JFrame{
 		this.modeType = modeType;
 //		inputView = InputView.getInstance();
 		resultView = ResultView.getInstance();
+		
+		
 		md = ModeFactory.createInstance(modeType);
 		
 		clearBtn = md.createClearBtn();
@@ -54,8 +58,11 @@ public class View extends JFrame{
 		numberBtns = md.createInputNumberBtn();
 		
 		setTitle("Jalculator");
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Image img = toolkit.getImage("image\\calculator.png");
+		setIconImage(img);
 		setLayout(new BorderLayout());
-		setSize(new Dimension(400,495));
+		setSize(new Dimension(400,500));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,20 +103,25 @@ public class View extends JFrame{
 	
 	private JPanel buildDisplayView() {
 		JPanel displayView = new JPanel();
-//		displayView.setPreferredSize(new Dimension(400,200));
 		displayView.setLayout(new GridLayout(4,1));
 		
 		inputView1 = new JTextArea();
+		inputView1.setEditable(false);
+		inputView1.setFocusable(false);
 		inputView1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		inputView1.setFont(inputView1.getFont().deriveFont(30f));
 		inputView1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		
 		inputView2 = new JTextArea();
+		inputView2.setEditable(false);
+		inputView2.setFocusable(false);
 		inputView2.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		inputView2.setFont(inputView1.getFont().deriveFont(30f));
 		inputView2.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		
 		operatorView = new JTextArea();
+		operatorView.setEditable(false);
+		operatorView.setFocusable(false);
 		operatorView.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		operatorView.setFont(inputView1.getFont().deriveFont(30f));
 		operatorView.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -127,7 +139,7 @@ public class View extends JFrame{
 		JPanel inputPanel  = new JPanel();
 		inputPanel.setPreferredSize(new Dimension(400,200));
 		inputPanel.setLayout(new GridLayout(1,2));
-		inputPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
+		inputPanel.setBorder(BorderFactory.createEmptyBorder(5,0,0,0));
 		inputPanel.add(buildNumberPanel());
 		inputPanel.add(buildOperationPanel());
 		
@@ -138,9 +150,9 @@ public class View extends JFrame{
 	private JPanel buildNumberPanel() {
 		JPanel inputNumberPanel  = new JPanel();
 		inputNumberPanel.setLayout(new GridLayout(2,1));
-		inputNumberPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 		for(int i = 0; i < numberBtns.length; i ++) {
 			inputNumberPanel.add(numberBtns[i]);
+		
 		}
 		return inputNumberPanel;
 	}
@@ -155,6 +167,20 @@ public class View extends JFrame{
 		}
 		inputOpPanel.add(equalBtn);
 		return inputOpPanel;
+	}
+	
+	public JButton getButton(char key){
+		switch(key) {
+			case 'c' : return clearBtn;
+			case '\u0008' : return deleteBtn;
+			case '+' : return opBtns[0];
+			case '*' : return opBtns[1];
+			case '!' : return opBtns[2];
+			case '\n' : return equalBtn;
+			case '0' : return numberBtns[0];
+			case '1' : return numberBtns[1];
+		}
+		return new JButton();
 	}
 	
 	public void updateResult(String result) {
@@ -184,16 +210,4 @@ public class View extends JFrame{
 		String update = str;
 		inputView.setText(update);
 	}
-	
-//	public void updateNumber(String str, JTextArea inputView) {
-//		String origin = inputView1.getText();
-//		String update = origin + str;
-//		inputView1.setText(update);
-//	}
-	
-//	public void updateOperator(String str) {
-//		String origin = inputView1.getText();
-//		String update = origin + "\n" + str + "\n";
-//		inputView1.setText(update);
-//	}
 }

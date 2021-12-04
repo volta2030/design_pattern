@@ -2,8 +2,6 @@ package command;
 
 import javax.swing.JButton;
 
-import mvc.*;
-
 public class ClearCommand implements Command{
 
 	private JButton button;
@@ -15,7 +13,10 @@ public class ClearCommand implements Command{
 	@Override
 	public void excute() {
 		// TODO Auto-generated method stub
-		Receiver.clear(button);
+		this.button.addActionListener(e->{
+			Receiver.clear();
+			}
+		);
 	}
 
 }

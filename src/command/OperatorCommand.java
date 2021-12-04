@@ -13,8 +13,12 @@ public class OperatorCommand implements Command {
 	@Override
 	public void excute() {
 		// TODO Auto-generated method stub
-		for(JButton btn : buttons) {
-			Receiver.processOperator(btn);
+		for(JButton button : buttons) {
+			button.addActionListener(e->{
+				Receiver.processOperator(e);	
+				button.setFocusable(false);
+			});
+
 		}
 	}
 }
