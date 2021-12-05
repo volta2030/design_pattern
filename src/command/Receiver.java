@@ -38,14 +38,14 @@ public class Receiver {
 	}
 	
 	public static void getResult() {
-		if(model.result=="") {
+		if(model.result.equals("")&& !model.operator.equals("")) {
 			String result = model.getValue();
 			view.updateResult(result);
 		}
 	}
 	
 	public static void processNumber(ActionEvent e) {
-		if(model.result=="") {
+		if(model.result.equals("")) {
 			if(model.operator.equals("")) {
 				model.input1 += e.getActionCommand();
 				view.update(view.inputView1, e.getActionCommand());
@@ -63,7 +63,7 @@ public class Receiver {
 	}
 	
 	public static void processOperator(ActionEvent e) {
-		if(model.result=="") {
+		if(model.result.equals("")) {
 			if(model.operator.equals("")) {
 				model.setOperator(e.getActionCommand());
 				view.update(view.operatorView ,e.getActionCommand());
