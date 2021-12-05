@@ -38,14 +38,14 @@ public class Receiver {
 	}
 	
 	public static void getResult() {
-
+		if(model.result=="") {
 			String result = model.getValue();
 			view.updateResult(result);
-			model.resetValue();
+		}
 	}
 	
 	public static void processNumber(ActionEvent e) {
-		
+		if(model.result=="") {
 			if(model.operator.equals("")) {
 				model.input1 += e.getActionCommand();
 				view.update(view.inputView1, e.getActionCommand());
@@ -53,10 +53,17 @@ public class Receiver {
 			else{
 				model.input2 += e.getActionCommand();
 				view.update(view.inputView2, e.getActionCommand());
-			}
+			}		
+		}else {
+			model.resetValue();
+			view.clear();
+			model.input1 += e.getActionCommand();
+			view.update(view.inputView1, e.getActionCommand());
+		}
 	}
 	
 	public static void processOperator(ActionEvent e) {
+		if(model.result=="") {
 			if(model.operator.equals("")) {
 				model.setOperator(e.getActionCommand());
 				view.update(view.operatorView ,e.getActionCommand());
@@ -64,9 +71,9 @@ public class Receiver {
 				if(model.operator.equals("NOT")) {
 					String result = model.getValue();
 					view.updateResult(result);
-					model.resetValue();
 				}
-			}
+			}	
+		}
 	}
 	
 }

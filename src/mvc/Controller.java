@@ -18,7 +18,6 @@ public class Controller {
 	public Controller(View view, Model model) {
 		this.view = view;
 		this.model = model;
-		
 		this.addButtonListener();
 	}
 	
@@ -38,25 +37,17 @@ public class Controller {
 	    // HERE ARE THE KEY BINDINGS
 		JRootPane rootPane = this.view.getRootPane();
 		rootPane.setFocusable(true);
+		
 		char[] keys = {'0', '1', 'c', '\u0008', '+', '*', '!', '\n'};
 		for(char key : keys) {
 		    rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(key), key);
 		    rootPane.getActionMap().put(key, new AbstractAction(){
 		        @Override
 		        public void actionPerformed(ActionEvent e){
-		            view.getButton(key).doClick(10);
+		            view.getButton(key).doClick(15);
 		        }
 		    });			
-		}
-		
-//	    rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('\u0008'), '\u0008');
-//	    rootPane.getActionMap().put('\u0008', new AbstractAction(){
-//	        @Override
-//	        public void actionPerformed(ActionEvent e){
-//	            Receiver.delete();
-//	        }
-//	    });	
-//	    
+		} 
 	}
 	
 	private void addCmdQueue(Command... commands) {

@@ -7,6 +7,7 @@ public class Model {
 	public String input1 = "";
 	public String input2 = "";
 	public static String operator = "";
+	public String result = "";
 
 	public String getValue() {
 		// TODO Auto-generated method stub
@@ -21,11 +22,12 @@ public class Model {
 			case "XOR" : result = JBin.xor(this.input1, this.input2); break;
 			case "XNOR" : result = JBin.xnor(this.input1, this.input2); break;
 			
-			case "+" : result = "1";
-			case "-" : result = "1";
-			case "*" : result = "1";
-			case "/" : result = "1";
+//			case "+" : result = "1";
+//			case "-" : result = "1";
+//			case "*" : result = "1";
+//			case "/" : result = "1";
 		}
+		this.result = result;
 		
 		return result;
 	}
@@ -38,6 +40,7 @@ public class Model {
 		this.input1 = "";
 		this.input2 = "";
 		this.operator = "";
+		this.result = "";
 	}
 	
 	public void undoInput1() {
