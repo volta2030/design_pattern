@@ -24,6 +24,8 @@ import factory.ModeFactory;
 import factory.ModeType;
 import singleton.InputView;
 import singleton.ResultView;
+import template.BrightTheme;
+import template.DarkTheme;
 
 public class View extends JFrame{
 	
@@ -36,6 +38,11 @@ public class View extends JFrame{
 	public JTextArea inputView2;
 	public JTextArea operatorView;
 	private ResultView resultView;
+	private JButton settingsBtn;
+	
+	private DarkTheme darkTheme;
+	private BrightTheme brightTheme;
+	
 	public JButton clearBtn;
 	public JButton deleteBtn;
 	public JButton equalBtn;
@@ -79,12 +86,30 @@ public class View extends JFrame{
 	
 	private JPanel buildConfigurePanel() {
 		JPanel configurePanel  = new JPanel();
+		
+		brightTheme = new BrightTheme();
+		darkTheme = new DarkTheme();
+		
+		settingsBtn = new JButton("Dark");
+		settingsBtn.setBorder(BorderFactory.createEmptyBorder(0,0,0,5));
+		settingsBtn.addActionListener(e->{
+			if(settingsBtn.getText() == "Bright") {
+				brightTheme.change(inputView1, inputView2, operatorView, resultView, numberBtns ,clearBtn, deleteBtn);
+				settingsBtn.setText("Dark");
+			}
+			else if (settingsBtn.getText() == "Dark") {
+				darkTheme.change(inputView1, inputView2, operatorView, resultView, numberBtns ,clearBtn, deleteBtn);
+				settingsBtn.setText("Bright");
+			}
+		});
+		
 		modeTF = new JTextField();
 		modeTF.setEditable(false);
 		modeTF.setBorder(BorderFactory.createEmptyBorder(5,5,0,0));
 		modeTF.setText(modeType.name());
 		configurePanel.setLayout(md.createGridLayout());
 		configurePanel.add(modeTF);
+		configurePanel.add(settingsBtn);
 		return configurePanel;
 	
 	}

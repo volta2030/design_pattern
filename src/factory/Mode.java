@@ -45,7 +45,7 @@ public abstract class Mode {
 	}
 	
 	public GridLayout createGridLayout() {
-		return new GridLayout(1,1);
+		return new GridLayout(1,2);
 	}
 
 }
